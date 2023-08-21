@@ -1,12 +1,3 @@
-const data = [
-    { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
-    { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
-    { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
-    { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
-    { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
-    { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
-];
-
 function ProductCategoryRow({category}) {
     return (
         <tr>
@@ -19,21 +10,19 @@ function ProductCategoryRow({category}) {
 
 function ProductTableRow({product}) {
     const {stocked, name, price} = product;
-    const aa = stocked ? <span style={{color: 'red'}}>{name}</span> : name;
+    const styleColor = stocked ? {color: 'red'} : {};
     return (
         <tr>
-            <td>
-               {aa}
-            </td>
+            <td style={styleColor}>{name}</td>
             <td>{price}</td>
         </tr>
     )
 }
 
-function productTable()　{
+function productTable({data})　{
     const categoryArray = [];
     let rows = [];
-    data.forEach((product, index) => {
+    data.forEach((product) => {
         const {category, name} = product;
         if (!categoryArray.includes(category)) {
             categoryArray.push(category);
@@ -67,6 +56,5 @@ function productTable()　{
         </table>
     )
 }
-
 
 export default productTable;
